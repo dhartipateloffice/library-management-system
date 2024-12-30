@@ -1,0 +1,55 @@
+{% extends 'user_dashboard/udashboard.html' %}
+
+{% block page_header %}Assigned Books{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="alert {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+<div class="container mt-5">
+    {% if assignments %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Date Assigned</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Renewal Date</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for assignment in assignments %}
+            <tr>
+                <td>{{ assignment.book.title }}</td>
+                <td>{{ assignment.book.author }}</td>
+                <td>{{ assignment.assigned_date }}</td>
+                <td>{{ assignment.due_date }}</td>
+                <td>{{ assignment.is_returned|yesno:"Returned,Not Returned" }}</td>
+                <td>
+                    {% if assignment.is_renewed %}
+                        {{ assignment.renewal_date }}  
+                    {% else %}
+                        Not renewed
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-books-message">No book assigned till now.</p>
+    {% endif %}
+</div>
+<div class="back-button-container">
+    <a href="{% url 'udashboard' %}" class="btn btn-primary">Back to Dashboard</a>
+</div>
+{% endblock %}

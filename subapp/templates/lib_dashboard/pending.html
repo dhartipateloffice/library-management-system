@@ -1,0 +1,30 @@
+{% extends 'lib_dashboard/ldashboard.html' %}
+
+{% block page_header %}Requests Awaiting Approval{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card border-secondary mb-3">
+            <div class="card-body text-secondary">
+                <ul class="list-group">
+                    {% for request in pending_requests %}
+                    <li class="list-group-item">
+                        <strong>Book:</strong> {{ request.book.title }} <br>
+                        <strong>User:</strong> {{ request.user.name }} <br>
+                        <a href="{% url 'approve' request.id %}" class="btn btn-success btn-sm">Approve</a>
+                        <a href="{% url 'reject' request.id %}" class="btn btn-danger btn-sm">Reject</a>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">No pending requests at the moment.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="back-button-container">
+    <a href="{% url 'ldashboard' %}" class="btn btn-primary">Back to Dashboard</a>
+</div>
+{% endblock %}
+

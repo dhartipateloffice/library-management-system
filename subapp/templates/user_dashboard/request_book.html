@@ -1,0 +1,53 @@
+
+{% extends 'user_dashboard/udashboard.html' %}
+
+{% block title %}
+Available Books
+{% endblock %}
+
+{% block page_header %}
+Available Books
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'udashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Available Books</li>
+        </ol>
+    </nav>
+
+    <h2>Books Available for Request</h2>
+    <div class="row">
+        {% if books %}
+            {% for book in books %}
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        {% if book.cover_image %}
+                            <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text mb-2">
+                                <strong>Author:</strong> {{ book.author }}<br>
+                                <strong>ISBN:</strong> {{ book.isbn }}
+                            </p>
+                            <form method="post" action="{% url 'all_books_and_request' book.id %}" class="mt-auto">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success btn-block">Request Book</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-warning" role="alert">
+                    Out Of Stock
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

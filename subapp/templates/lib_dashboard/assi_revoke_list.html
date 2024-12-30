@@ -1,0 +1,40 @@
+{% extends 'lib_dashboard/ldashboard.html' %}
+
+{% block page_header %}Active Book Assignments{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Assigned User</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for assignment in assignments %}
+                <tr>
+                    <td>{{ assignment.book.title }}</td>
+                    <td>{{ assignment.user.email }}</td> 
+                    <td>
+                        <form method="POST" action="{% url 'assi_revoke' assignment.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Revoke</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">No current book assignments.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="back-button-container">
+        <a href="{% url 'ldashboard' %}" class="btn btn-primary">Back to Dashboard</a>
+    </div>
+
+
+    {% endblock content %}

@@ -1,0 +1,112 @@
+
+body {
+    background: linear-gradient(to right, #74ebd5, #9face6); 
+    font-family: 'Arial', sans-serif; 
+    color: #333; 
+}
+
+.navbar {
+    background-color: #1f1f1f; 
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #ffcc00; 
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff; 
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffcc00; 
+}
+
+.sidebar {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px;
+    border-radius: 15px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+
+.card {
+    border-radius: 15px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+    border: none; 
+    margin: 20px auto; 
+    max-width: 1000px; 
+}
+
+.card-header {
+    font-size: 1.5rem;
+    background-color: #ffcc00; 
+    color: #1f1f1f; 
+    text-align: center; 
+    padding: 15px; 
+    border-radius: 15px 15px 0 0; 
+}
+
+form {
+    margin-top: 20px; 
+}
+
+input[type="text"],
+input[type="file"],
+input[type="number"],
+input[type="date"],
+select {
+    border: 2px solid #ced4da;
+    border-radius: 8px; 
+    padding: 10px;
+    width: 100%; 
+    margin-bottom: 15px; 
+    transition: border-color 0.3s; 
+    background-color: #f8f9fa; 
+    font-size: 0.9rem; 
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #ffcc00; 
+    outline: none; 
+}
+
+.btn {
+    border-radius: 8px; 
+    padding: 10px 15px; 
+    margin-top: 10px; 
+    font-size: 1rem; 
+}
+
+.btn-success {
+    background-color: #28a745; 
+    color: #fff; 
+    border: none; 
+    transition: background-color 0.3s;
+}
+
+.btn-success:hover {
+    background-color: #218838; 
+}
+
+.btn-secondary {
+    background-color: #6c757d; 
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s; 
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin: 10px; 
+        width: 90%; 
+    }
+}
